@@ -7,7 +7,7 @@ var enemy_attackRange = false
 var attack_cooldown = true
 var health = 100
 var player_alive = true
-var attackIn = false
+var attackIp = false
 func _physics_process(delta):
 	playerMovementandInput()
 	if health <= 0:
@@ -46,10 +46,18 @@ func playerMovementandInput():
 	if character_direction: 
 		velocity = character_direction * movement_speed
 		if %sprite.animation != "walking": %sprite.animation = "walking"
+	elif attackIp:
+		if %sprite.animation != "attack": %sprite.animation = "attack" 
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, movement_speed)
 		if %sprite.animation != "idle": %sprite.animation = "idle"
 	
-
+func attack():
+	var dir = character_direction
+	if Input.is_action_just_pressed("attack"):
+		Global.player_current_attack = true
+		attackIp = true
+		
+			
 func _on_attack_cooldown_timeout() -> void:
 	attack_cooldown = true
