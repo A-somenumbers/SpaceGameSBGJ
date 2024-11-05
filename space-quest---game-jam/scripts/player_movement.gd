@@ -16,6 +16,7 @@ func _physics_process(delta):
 		print("dead!")
 		self.queue_free()
 	enemy_attack()
+	attack()
 
 
 func _on_player_hbox_body_entered(body: Node2D) -> void:
@@ -45,6 +46,8 @@ func playerMovementandInput():
 	
 	if character_direction: 
 		velocity = character_direction * movement_speed
+		if attackIp:
+			if %sprite.animation != "attack": %sprite.animation = "attack" 
 		if %sprite.animation != "walking": %sprite.animation = "walking"
 	elif attackIp:
 		if %sprite.animation != "attack": %sprite.animation = "attack" 
@@ -57,7 +60,14 @@ func attack():
 	if Input.is_action_just_pressed("attack"):
 		Global.player_current_attack = true
 		attackIp = true
+		$"deal attack timer".start()
 		
 			
 func _on_attack_cooldown_timeout() -> void:
+	
 	attack_cooldown = true
+
+
+func _on_deal_attack_timer_timeout() -> void:
+	$"deal attack timer".stop()
+	attackIp = false

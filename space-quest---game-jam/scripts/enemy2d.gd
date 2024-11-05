@@ -39,7 +39,7 @@ func _on_enemy_hbox_area_shape_entered(body):
 
 func _on_enemy_hbox_area_shape_exited(body):
 	if body.has_method("player"):
-		player_inAttackRange = true
+		player_inAttackRange = false
 
 func deals_with_damage():
 	if player_inAttackRange and Global.player_current_attack:

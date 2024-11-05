@@ -205,7 +205,7 @@ unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_vt42l")
 animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.155145
+frame_progress = 0.832658
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
@@ -219,6 +219,9 @@ shape = SubResource("CircleShape2D_gu8ik")
 
 [node name="attack_cooldown" type="Timer" parent="."]
 
+[node name="deal attack timer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="player_hbox" to="." method="_on_player_hbox_body_entered"]
 [connection signal="body_exited" from="player_hbox" to="." method="_on_player_hbox_body_exited"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="deal attack timer" to="." method="_on_deal_attack_timer_timeout"]
