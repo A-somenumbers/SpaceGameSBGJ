@@ -1,7 +1,23 @@
-[gd_scene load_steps=25 format=3 uid="uid://cwuwdhuq7v0dt"]
+[gd_scene load_steps=30 format=3 uid="uid://cwuwdhuq7v0dt"]
 
-[ext_resource type="Script" path="res://scenes/player_movement.gd" id="1_jgec3"]
+[ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_jgec3"]
 [ext_resource type="Texture2D" uid="uid://uf58ix6h5615" path="res://assets/sprites/knight.png" id="1_wwwbi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcbwl"]
+atlas = ExtResource("1_wwwbi")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0sgu"]
+atlas = ExtResource("1_wwwbi")
+region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epi1e"]
+atlas = ExtResource("1_wwwbi")
+region = Rect2(64, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbbog"]
+atlas = ExtResource("1_wwwbi")
+region = Rect2(96, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fvovb"]
 atlas = ExtResource("1_wwwbi")
@@ -87,6 +103,23 @@ region = Rect2(224, 96, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_dcbwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0sgu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epi1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbbog")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_fvovb")
 }, {
 "duration": 1.0,
@@ -160,16 +193,32 @@ animations = [{
 radius = 5.0
 height = 10.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_gu8ik"]
+radius = 11.0
+
 [node name="player" type="CharacterBody2D"]
+collision_layer = 3
 script = ExtResource("1_jgec3")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(18, -12)
 sprite_frames = SubResource("SpriteFrames_vt42l")
-animation = &"walking"
+animation = &"attack"
 autoplay = "idle"
+frame_progress = 0.155145
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(18, -7)
+position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_anyef")
+
+[node name="player_hbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hbox"]
+position = Vector2(-1, 3)
+shape = SubResource("CircleShape2D_gu8ik")
+
+[node name="attack_cooldown" type="Timer" parent="."]
+
+[connection signal="body_entered" from="player_hbox" to="." method="_on_player_hbox_body_entered"]
+[connection signal="body_exited" from="player_hbox" to="." method="_on_player_hbox_body_exited"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

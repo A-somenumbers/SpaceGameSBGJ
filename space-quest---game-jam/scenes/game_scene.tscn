@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dq3jwhvp0x44n"]
+[gd_scene load_steps=6 format=3 uid="uid://dq3jwhvp0x44n"]
 
 [ext_resource type="PackedScene" uid="uid://cwuwdhuq7v0dt" path="res://scenes/player.tscn" id="1_ohxhq"]
 [ext_resource type="Texture2D" uid="uid://ceygyi8flwb3y" path="res://assets/sprites/world_tileset.png" id="1_vxaag"]
+[ext_resource type="PackedScene" uid="uid://biboxqrtc1j3p" path="res://scenes/enemy.tscn" id="3_2k3qe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h0ne3"]
 texture = ExtResource("1_vxaag")
@@ -143,13 +144,16 @@ z_index = 5
 position = Vector2(-1, 0)
 movement_speed = 100.0
 
-[node name="player_camera" type="Camera2D" parent="player"]
-position = Vector2(18, -7)
-zoom = Vector2(6, 6)
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_7o110")
 format = 2
 layer_0/tile_data = PackedInt32Array(-65537, 131073, 11, -1, 131073, 11, 65535, 131073, 12, 131071, 262145, 1, 65536, 262145, 1, 0, 131073, 12, -65536, 131073, 11, -131072, 131073, 11, -131071, 131073, 11, -65535, 131073, 11, 1, 131073, 12, 65537, 1, 4, 2, 131073, 12, -65534, 131073, 11, -131070, 131073, 11, 65538, 1, 4, -131069, 131073, 11, -65533, 131073, 11, 3, 131073, 12, 65539, 1, 4, 65540, 1, 4, 4, 131073, 12, -65532, 131073, 11, -131068, 131073, 11, -196605, 131073, 11, -196606, 131073, 11, -196607, 131073, 11, -196608, 131073, 11, -131073, 131073, 11, -131074, 131073, 11, -65538, 131073, 11, -2, 131073, 11, 65534, 131073, 12, 131070, 262145, 1, -196611, 131073, 12, -131075, 131073, 12, -65539, 131073, 12, -196610, 131073, 12, -196609, 131073, 12, -196604, 131073, 11, -196603, 131073, 12, -131067, 131073, 12, -65531, 131073, 12, 5, 131073, 12, -3, 131073, 12, 65533, 131073, 12, -262144, 131073, 12, -262143, 131073, 12, -262142, 131073, 12, -262141, 131073, 12, -262140, 131073, 12, -262139, 131073, 12, -65530, 65537, 6, 6, 65537, 6, 65542, 65537, 6, 65541, 65537, 6)
 layer_1/name = "Layer1"
 layer_1/tile_data = PackedInt32Array(-131069, 458753, 7, -131073, 458753, 7, -1, 262145, 8, -131070, 262145, 8, -65532, 1, 8, -131074, 1, 8)
+
+[node name="player_camera" type="Camera2D" parent="."]
+position = Vector2(17, -7)
+zoom = Vector2(3, 3)
+
+[node name="enemy" parent="." instance=ExtResource("3_2k3qe")]
+position = Vector2(36, -71)
