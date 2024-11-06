@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://cwuwdhuq7v0dt"]
+[gd_scene load_steps=26 format=3 uid="uid://cwuwdhuq7v0dt"]
 
 [ext_resource type="Script" path="res://scenes/player_movement.gd" id="1_jgec3"]
 [ext_resource type="Texture2D" uid="uid://uf58ix6h5615" path="res://assets/sprites/knight.png" id="1_wwwbi"]
+[ext_resource type="PackedScene" uid="uid://vh20yn56je2p" path="res://scenes/powerups.tscn" id="3_u3vgb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fvovb"]
 atlas = ExtResource("1_wwwbi")
@@ -162,6 +163,8 @@ height = 10.0
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_jgec3")
+movement_speed = null
+health = null
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
@@ -175,12 +178,18 @@ position = Vector2(18, -7)
 shape = SubResource("CapsuleShape2D_anyef")
 
 [node name="dash_alarm" type="Timer" parent="."]
-wait_time = 0.33
+wait_time = 0.25
 one_shot = true
 
 [node name="dashing_cooldown" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="health" type="Node" parent="."]
+
+[node name="powerups" type="Node" parent="."]
+
+[node name="health_powerup" parent="powerups" instance=ExtResource("3_u3vgb")]
 
 [connection signal="timeout" from="dash_alarm" to="." method="_on_dash_alarm_timeout"]
 [connection signal="timeout" from="dashing_cooldown" to="." method="_on_dashing_cooldown_timeout"]

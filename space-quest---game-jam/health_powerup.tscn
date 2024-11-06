@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkx4bxe70tl01"]
+
+[ext_resource type="Script" path="res://health_powerup.gd" id="1_dofxy"]
+
+[node name="health_object" type="Area2D"]
+script = ExtResource("1_dofxy")

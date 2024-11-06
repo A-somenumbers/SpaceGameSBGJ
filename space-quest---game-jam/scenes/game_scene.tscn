@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dq3jwhvp0x44n"]
+[gd_scene load_steps=6 format=3 uid="uid://dq3jwhvp0x44n"]
 
 [ext_resource type="PackedScene" uid="uid://cwuwdhuq7v0dt" path="res://scenes/player.tscn" id="1_ohxhq"]
 [ext_resource type="Texture2D" uid="uid://ceygyi8flwb3y" path="res://assets/sprites/world_tileset.png" id="1_vxaag"]
+[ext_resource type="PackedScene" uid="uid://vh20yn56je2p" path="res://scenes/powerups.tscn" id="3_lr4on"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h0ne3"]
 texture = ExtResource("1_vxaag")
@@ -425,8 +426,7 @@ sources/1 = SubResource("TileSetAtlasSource_h0ne3")
 
 [node name="player" parent="." instance=ExtResource("1_ohxhq")]
 z_index = 5
-position = Vector2(-1, 0)
-movement_speed = 100.0
+position = Vector2(64, 8)
 
 [node name="player_camera" type="Camera2D" parent="player"]
 position = Vector2(18, -7)
@@ -443,3 +443,7 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(-131069, 458753, 7, -131073, 458753, 7, -1, 262145, 8, -131070, 262145, 8, -65532, 1, 8, -131074, 1, 8)
+
+[node name="powerups" type="Node" parent="."]
+
+[node name="health_powerup" parent="powerups" instance=ExtResource("3_lr4on")]

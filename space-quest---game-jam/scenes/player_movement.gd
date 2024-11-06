@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
-@export var movement_speed : float = 200	# Base movement speed.
+var movement_speed : float = 200	# Base movement speed.
 var dash_speed : float = 600				# How fast the player dashes.
-var can_dash = true
+var can_dash = true							# Whether if the player can dash or not.
+@export var max_health: int = 3				# The maximum health of the player.
+@export var health : int = 1				# How many hearts the player has (most enemies do 1 heart damage?)
 
-var character_direction : Vector2
+var character_direction : Vector2			# Directional movement for the player.
 
 func _physics_process(delta):
 	character_direction.x = Input.get_axis("move_left", "move_right")
@@ -18,7 +20,7 @@ func _physics_process(delta):
 		if %sprite.animation != "walking": %sprite.animation = "walking"
 	
 		# Dashing function; run ONLY if player already moving.
-		elif Input.is_action_pressed("dash") and can_dash:
+		if Input.is_action_pressed("dash") and can_dash:
 			dash()
 	
 	# Else, player not moving; play the idle animation.
@@ -27,13 +29,16 @@ func _physics_process(delta):
 		if %sprite.animation != "idle": %sprite.animation = "idle"
 	print(velocity)
 	move_and_slide()
+	
+	# Check if the player is colliding with a powerup.
+	for p in get_parent().get_node("powerups").get_children():
+		p.connect("player_collision", self.powerup_logic)
 
 # Set can dash to false and start dashing timer.
 func dash():
-	# Dashing logic.
-	$dash_alarm.start()
 	velocity = character_direction.normalized() * dash_speed
-	print("dashing...")			#DEBUG, delete later!
+	if $dash_alarm.is_stopped():
+		$dash_alarm.start()
 
 # Dashing timer ends out = dash ends.
 func _on_dash_alarm_timeout():
@@ -44,5 +49,12 @@ func _on_dash_alarm_timeout():
 # Dashing cooldown ends = can_dash back to true.
 func _on_dashing_cooldown_timeout():
 	can_dash = true
-	print("Can dash: ")
-	print(can_dash)
+
+# Powerup logic.
+func powerup_logic(powerup_type):
+	match powerup_type:
+		0:
+			# Only heal if health is less than the maximum health.
+			if health < max_health:
+				health += 1
+			print(health)
