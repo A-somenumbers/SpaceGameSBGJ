@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export var movement_speed : float = 500
 
+@onready var projectileO = preload("res://scenes/projectile_1.tscn")
+"res://scenes/projectile_1.gd"
 var character_direction : Vector2
 var enemy_attackRange = false
 var attack_cooldown = true
@@ -40,28 +42,32 @@ func player():
 func playerMovementandInput():
 	character_direction.x = Input.get_axis("move_left", "move_right")
 	character_direction.y = Input.get_axis("move_up", "move_down")
-	if character_direction.x > 0: %sprite.flip_h = false
-	elif character_direction.x < 0: %sprite.flip_h = true
+	if character_direction.x > 0: $flip.scale.x = 1
+	elif character_direction.x < 0: $flip.scale.x = -1
 	move_and_slide()
 	
 	if character_direction: 
 		velocity = character_direction * movement_speed
-		if attackIp:
-			if %sprite.animation != "attack": %sprite.animation = "attack" 
-		if %sprite.animation != "walking": %sprite.animation = "walking"
-	elif attackIp:
-		if %sprite.animation != "attack": %sprite.animation = "attack" 
+		if Global.player_current_attack == false:
+			if $flip/sprite.animation != "walking": $flip/sprite.animation = "walking"
+	
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, movement_speed)
-		if %sprite.animation != "idle": %sprite.animation = "idle"
+		if Global.player_current_attack == false:
+			if $flip/sprite.animation != "idle": $flip/sprite.animation = "idle"
 	
 func attack():
 	var dir = character_direction
 	if Input.is_action_just_pressed("attack"):
 		Global.player_current_attack = true
-		attackIp = true
+		$"flip/sprite".animation = "shoot"
 		$"deal attack timer".start()
+		var p1 = projectileO.instantiate()
+		p1.global_position = $flip/shotPos.global_position
+		p1.vel = $flip.scale.x
+		get_parent().add_child(p1)
 		
+	
 			
 func _on_attack_cooldown_timeout() -> void:
 	
@@ -70,4 +76,4 @@ func _on_attack_cooldown_timeout() -> void:
 
 func _on_deal_attack_timer_timeout() -> void:
 	$"deal attack timer".stop()
-	attackIp = false
+	Global.player_current_attack = false
