@@ -5,6 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://by0mic3b1jma7" path="res://assets/SBGJ_Assets/AGJ_PlayerSprite_RangeAtk.png" id="3_5cke1"]
 [ext_resource type="Texture2D" uid="uid://cdp6p2pdi1oiq" path="res://assets/SBGJ_Assets/AGJ_PlayerSprite_Sprint.png" id="4_lredi"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_anyef"]
+radius = 5.0
+height = 10.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_lttt1"]
 atlas = ExtResource("2_qpefo")
 region = Rect2(0, 0, 16, 16)
@@ -191,10 +195,6 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_anyef"]
-radius = 5.0
-height = 10.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu8ik"]
 radius = 11.0
 
@@ -206,18 +206,17 @@ script = ExtResource("1_jgec3")
 
 [node name="deal attack timer" type="Timer" parent="."]
 
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_anyef")
+
 [node name="flip" type="Node2D" parent="."]
 
 [node name="sprite" type="AnimatedSprite2D" parent="flip"]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_vt42l")
-animation = &"shoot"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.620363
-
-[node name="collision" type="CollisionShape2D" parent="flip"]
-position = Vector2(0, 3)
-shape = SubResource("CapsuleShape2D_anyef")
 
 [node name="player_hbox" type="Area2D" parent="flip"]
 

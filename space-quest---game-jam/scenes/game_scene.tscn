@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cwuwdhuq7v0dt" path="res://scenes/player.tscn" id="1_ohxhq"]
 [ext_resource type="Texture2D" uid="uid://ceygyi8flwb3y" path="res://assets/sprites/world_tileset.png" id="1_vxaag"]
-[ext_resource type="PackedScene" uid="uid://biboxqrtc1j3p" path="res://scenes/enemy.tscn" id="3_2k3qe"]
+[ext_resource type="PackedScene" uid="uid://t0i6il5kikp5" path="res://scenes/alien_g.tscn" id="3_memw1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h0ne3"]
 texture = ExtResource("1_vxaag")
@@ -155,5 +155,5 @@ layer_1/tile_data = PackedInt32Array(-131069, 458753, 7, -131073, 458753, 7, -1,
 position = Vector2(17, -7)
 zoom = Vector2(3, 3)
 
-[node name="enemy" parent="." instance=ExtResource("3_2k3qe")]
-position = Vector2(36, -71)
+[node name="AlienG" parent="." instance=ExtResource("3_memw1")]
+position = Vector2(56, -42)

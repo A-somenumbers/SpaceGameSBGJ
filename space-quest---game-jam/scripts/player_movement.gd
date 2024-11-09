@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var movement_speed : float = 500
 
 @onready var projectileO = preload("res://scenes/projectile_1.tscn")
-"res://scenes/projectile_1.gd"
+
 var character_direction : Vector2
 var enemy_attackRange = false
 var attack_cooldown = true
