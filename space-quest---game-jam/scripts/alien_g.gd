@@ -40,7 +40,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	var damage
 	if body.has_method("proj"):
 		print("gleep :D")
-		damage = 50
+		damage = Global.damage
 		take_damage(damage)
 
 func take_damage(damage):
@@ -50,4 +50,9 @@ func take_damage(damage):
 		
 func death():
 	dead = true;
+	Global.score += 100
 	queue_free()
+	
+#references for other aspects
+func enemy():
+	pass

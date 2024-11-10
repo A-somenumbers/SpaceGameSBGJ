@@ -24,6 +24,9 @@ func _physics_process(delta):
 func _on_player_hbox_body_entered(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy_attackRange = true
+	if body.has_method("hp"):
+		health += 20
+		print(health)
 
 
 func _on_player_hbox_body_exited(body: Node2D) -> void:
@@ -35,7 +38,8 @@ func enemy_attack():
 		health = health - 20
 		attack_cooldown = false
 		$attack_cooldown.start()
-		print("player took damage")
+		print("player took damage, now at: ")
+		print(health)
 	
 func player():
 	pass

@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://biboxqrtc1j3p"]
 
-[ext_resource type="Script" path="res://scripts/enemy2d.gd" id="1_swi1w"]
+[ext_resource type="Script" path="res://stuff not in the game but I am too scared to delete/enemy2d.gd" id="1_swi1w"]
 [ext_resource type="Texture2D" uid="uid://bkcfinr6tc6d1" path="res://assets/sprites/slime_green.png" id="2_31i6g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ofyvb"]

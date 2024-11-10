@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://cm4jfol16ua2q"]
+
+[ext_resource type="Texture2D" uid="uid://d132pslea1h32" path="res://assets/SBGJ_Assets/ABJ_HealthPotion-Sheet.png" id="1_5y6yn"]
+[ext_resource type="Script" path="res://scripts/healthpot.gd" id="1_fxve0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5l3ts"]
+atlas = ExtResource("1_5y6yn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yqfl"]
+atlas = ExtResource("1_5y6yn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvhoe"]
+atlas = ExtResource("1_5y6yn")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1mkk"]
+atlas = ExtResource("1_5y6yn")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6h62"]
+atlas = ExtResource("1_5y6yn")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4d1n"]
+atlas = ExtResource("1_5y6yn")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uyfv"]
+atlas = ExtResource("1_5y6yn")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhxbq"]
+atlas = ExtResource("1_5y6yn")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kpsn3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5l3ts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yqfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvhoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1mkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6h62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4d1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uyfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhxbq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avll8"]
+size = Vector2(11, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wug4"]
+size = Vector2(7, 13)
+
+[node name="healthpot" type="CharacterBody2D"]
+script = ExtResource("1_fxve0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kpsn3")
+frame_progress = 0.118628
+
+[node name="pickup_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickup_area"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_avll8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_1wug4")
+
+[connection signal="body_entered" from="pickup_area" to="." method="_on_pickup_area_body_entered"]
