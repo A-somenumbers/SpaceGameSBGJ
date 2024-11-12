@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var movement_speed : float = 500
 
 @onready var projectileO = preload("res://scenes/projectiles/projectile_1.tscn")
+@onready var projectile1 = preload("res://scenes/projectiles/projectile_2.tscn")
+@onready var projectile2 = preload("res://scenes/projectiles/projectile_3.tscn")
 var dmgGiven = 10
 
 var character_direction : Vector2
@@ -19,6 +21,8 @@ func _physics_process(delta):
 		self.queue_free()
 	enemy_attack()
 	attack()
+	
+	
 
 
 func _on_player_hbox_body_entered(body: Node2D) -> void:
@@ -70,11 +74,25 @@ func attack():
 		Global.player_current_attack = true
 		$"flip/sprite".animation = "shoot"
 		$"deal attack timer".start()
-		var p1 = projectileO.instantiate()
-		p1.global_position = $flip/shotPos.global_position
-		p1.vel = $flip.scale.x
-		get_parent().add_child(p1)
 		
+		if(Global.mode == 1):
+			var p1 = projectileO.instantiate()
+			p1.global_position = $flip/shotPos.global_position
+			p1.vel = $flip.scale.x
+			get_parent().add_child(p1)
+			var p2 = projectile1.instantiate()
+			var p3 = projectile2.instantiate()
+			p2.global_position = $flip/shotPos.global_position
+			p2.vel = $flip.scale.x
+			get_parent().add_child(p2)
+			p3.global_position = $flip/shotPos.global_position
+			p3.vel = $flip.scale.x
+			get_parent().add_child(p3)
+		elif (Global.mode == 0):
+			var p1 = projectileO.instantiate()
+			p1.global_position = $flip/shotPos.global_position
+			p1.vel = $flip.scale.x
+			get_parent().add_child(p1)
 	
 			
 func _on_attack_cooldown_timeout() -> void:
@@ -85,3 +103,6 @@ func _on_attack_cooldown_timeout() -> void:
 func _on_deal_attack_timer_timeout() -> void:
 	$"deal attack timer".stop()
 	Global.player_current_attack = false
+
+
+	

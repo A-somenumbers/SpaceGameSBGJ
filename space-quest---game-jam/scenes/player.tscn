@@ -226,7 +226,10 @@ shape = SubResource("CircleShape2D_gu8ik")
 [node name="shotPos" type="Marker2D" parent="flip"]
 position = Vector2(13, 0)
 
+[node name="mode1timer" type="Timer" parent="."]
+
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="deal attack timer" to="." method="_on_deal_attack_timer_timeout"]
 [connection signal="body_entered" from="flip/player_hbox" to="." method="_on_player_hbox_body_entered"]
 [connection signal="body_exited" from="flip/player_hbox" to="." method="_on_player_hbox_body_exited"]
+[connection signal="timeout" from="mode1timer" to="." method="_on_mode_1_timer_timeout"]
