@@ -13,15 +13,15 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if !dead:
 		$"detection area/CollisionShape2D".disabled = false
-		#if player_in_range:
-		#	if(player.position.x - position.x) < 0:
-		#		$AnimatedSprite2D.flip_h = true
-		#	else:
-		#		$AnimatedSprite2D.flip_h = false
-		#	position += (player.position - position)/speed
-		#	$AnimatedSprite2D.play("Move")
-		#else: 
-			#$AnimatedSprite2D.play("Idle")
+		if player_in_range:
+			if(player.position.x - position.x) < 0:
+				$AnimatedSprite2D.flip_h = true
+			else:
+				$AnimatedSprite2D.flip_h = false
+			position += (player.position - position)/speed
+			$AnimatedSprite2D.play("Move")
+		else: 
+			$AnimatedSprite2D.play("Idle")
 	if dead:
 		$"detection area/CollisionShape2D".disabled = true
 
@@ -40,6 +40,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	var damage
 	if body.has_method("proj"):
 		print("gleep :D")
+		body.queue_free()
 		damage = Global.damage
 		take_damage(damage)
 

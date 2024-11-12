@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dq3jwhvp0x44n"]
+[gd_scene load_steps=8 format=3 uid="uid://dq3jwhvp0x44n"]
 
 [ext_resource type="PackedScene" uid="uid://cwuwdhuq7v0dt" path="res://scenes/player.tscn" id="1_ohxhq"]
 [ext_resource type="Texture2D" uid="uid://ceygyi8flwb3y" path="res://assets/sprites/world_tileset.png" id="1_vxaag"]
 [ext_resource type="PackedScene" uid="uid://t0i6il5kikp5" path="res://scenes/alien_g.tscn" id="3_memw1"]
 [ext_resource type="PackedScene" uid="uid://cm4jfol16ua2q" path="res://scenes/healthpot.tscn" id="4_id8eg"]
+[ext_resource type="PackedScene" uid="uid://bqlmvu70doeka" path="res://scenes/alien_p.tscn" id="5_4f06g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h0ne3"]
 texture = ExtResource("1_vxaag")
@@ -157,7 +158,10 @@ position = Vector2(17, -7)
 zoom = Vector2(3, 3)
 
 [node name="AlienG" parent="." instance=ExtResource("3_memw1")]
-position = Vector2(56, -42)
+position = Vector2(82, -68)
 
 [node name="healthpot" parent="." instance=ExtResource("4_id8eg")]
 position = Vector2(-52, -11)
+
+[node name="AlienG2" parent="." instance=ExtResource("5_4f06g")]
+position = Vector2(-27, -52)

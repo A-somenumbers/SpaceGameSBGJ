@@ -71,7 +71,7 @@ animations = [{
 size = Vector2(11, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wug4"]
-size = Vector2(7, 13)
+size = Vector2(9, 14)
 
 [node name="healthpot" type="CharacterBody2D"]
 script = ExtResource("1_fxve0")
@@ -87,7 +87,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_avll8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_1wug4")
 
 [connection signal="body_entered" from="pickup_area" to="." method="_on_pickup_area_body_entered"]
