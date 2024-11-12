@@ -8,4 +8,5 @@ var mode = 0
 var dmg = false
 
 func _physics_process(delta: float) -> void:
-	pass
+	print(score)
+	

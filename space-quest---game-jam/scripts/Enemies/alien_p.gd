@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
-		print("gloop :P")
+	
 		player_in_range = true
 		player = body
 		
@@ -42,7 +42,6 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	var damage
 	if body.has_method("proj"):
-		print("gleep :D")
 		body.queue_free()
 		damage = Global.damage
 		take_damage(damage)
@@ -62,9 +61,9 @@ func take_damage(damage):
 		
 func death():
 	dead = true;
-	Global.score += 100
+	Global.score += 200
 	queue_free()
 	
 #references for other aspects
-func enemy():
+func alienP():
 	pass

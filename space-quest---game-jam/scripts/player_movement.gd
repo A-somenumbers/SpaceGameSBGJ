@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var movement_speed : float = 500
 
 @onready var projectileO = preload("res://scenes/projectiles/projectile_1.tscn")
+var dmgGiven = 10
 
 var character_direction : Vector2
 var enemy_attackRange = false
@@ -15,33 +16,34 @@ func _physics_process(delta):
 	if health <= 0:
 		player_alive = false
 		health = 0;
-		print("dead!")
 		self.queue_free()
 	enemy_attack()
 	attack()
 
 
 func _on_player_hbox_body_entered(body: Node2D) -> void:
-	if body.has_method("enemy"):
+	if body.has_method("alienG"):
 		enemy_attackRange = true
+		dmgGiven = 10
+	if body.has_method("alienP"):
+		enemy_attackRange = true
+		dmgGiven = 20
 	if body.has_method("hp"):
 		health += 20
-		print(health)
 	if body.has_method("doubleDmg"):
 		Global.damage = Global.damage*2
 
 
 func _on_player_hbox_body_exited(body: Node2D) -> void:
-	if body.has_method("enemy"):
+	if body.has_method("alienG"):
 		enemy_attackRange = false
-		
+	if body.has_method("alienP"):
+		enemy_attackRange = false	
 func enemy_attack():
 	if enemy_attackRange and attack_cooldown:
-		health = health - 20
+		health = health - dmgGiven
 		attack_cooldown = false
 		$attack_cooldown.start()
-		print("player took damage, now at: ")
-		print(health)
 	
 func player():
 	pass
