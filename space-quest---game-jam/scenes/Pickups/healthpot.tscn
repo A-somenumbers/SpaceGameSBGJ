@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://cm4jfol16ua2q"]
 
 [ext_resource type="Texture2D" uid="uid://d132pslea1h32" path="res://assets/SBGJ_Assets/ABJ_HealthPotion-Sheet.png" id="1_5y6yn"]
-[ext_resource type="Script" path="res://scripts/healthpot.gd" id="1_fxve0"]
+[ext_resource type="Script" path="res://scripts/pickups/healthpot.gd" id="1_fxve0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5l3ts"]
 atlas = ExtResource("1_5y6yn")

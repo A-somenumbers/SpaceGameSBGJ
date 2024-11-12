@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://t0i6il5kikp5"]
+[gd_scene load_steps=17 format=3 uid="uid://t0i6il5kikp5"]
 
-[ext_resource type="Script" path="res://scripts/alien_g.gd" id="1_86ji5"]
+[ext_resource type="Script" path="res://scripts/Enemies/alien_g.gd" id="1_86ji5"]
 [ext_resource type="Texture2D" uid="uid://d3fb3p1ww6tnv" path="res://assets/SBGJ_Assets/AGJ_Enemy1_Idle.png" id="2_1tojo"]
 [ext_resource type="Texture2D" uid="uid://ci044n0h27ybb" path="res://assets/SBGJ_Assets/AGJ_Enemy1_Sprint.png" id="3_55hpf"]
+[ext_resource type="Texture2D" uid="uid://crkf7tiruyolt" path="res://assets/SBGJ_Assets/AGJ_Enemy1_Attack.png" id="4_as421"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xkjeu"]
 atlas = ExtResource("2_1tojo")
@@ -19,6 +20,22 @@ region = Rect2(0, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ejp2w"]
 atlas = ExtResource("3_55hpf")
 region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pafwa"]
+atlas = ExtResource("4_as421")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkurd"]
+atlas = ExtResource("4_as421")
+region = Rect2(36, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vcr0"]
+atlas = ExtResource("4_as421")
+region = Rect2(72, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e48bp"]
+atlas = ExtResource("4_as421")
+region = Rect2(108, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cy4bb"]
 animations = [{
@@ -43,6 +60,23 @@ animations = [{
 "loop": true,
 "name": &"Move",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pafwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkurd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vcr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e48bp")
+}],
+"loop": true,
+"name": &"bro fell 💀",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qay4l"]
@@ -58,9 +92,10 @@ radius = 10.198
 script = ExtResource("1_86ji5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_cy4bb")
 animation = &"Idle"
-frame_progress = 0.0932043
+frame_progress = 0.762938
 
 [node name="basic_collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qay4l")
@@ -78,3 +113,4 @@ shape = SubResource("CircleShape2D_d87qw")
 [connection signal="body_entered" from="detection area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection area" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

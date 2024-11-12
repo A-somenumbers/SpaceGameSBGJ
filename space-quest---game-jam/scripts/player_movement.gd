@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var movement_speed : float = 500
 
-@onready var projectileO = preload("res://scenes/projectile_1.tscn")
+@onready var projectileO = preload("res://scenes/projectiles/projectile_1.tscn")
 
 var character_direction : Vector2
 var enemy_attackRange = false
@@ -27,6 +27,8 @@ func _on_player_hbox_body_entered(body: Node2D) -> void:
 	if body.has_method("hp"):
 		health += 20
 		print(health)
+	if body.has_method("doubleDmg"):
+		Global.damage = Global.damage*2
 
 
 func _on_player_hbox_body_exited(body: Node2D) -> void:
