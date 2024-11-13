@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bkx4bxe70tl01"]
 
-[ext_resource type="Script" path="res://health_powerup.gd" id="1_dofxy"]
+[ext_resource type="Script" path="res://stuff not in the game but I am too scared to delete/health_powerup.gd" id="1_dofxy"]
 [ext_resource type="Texture2D" uid="uid://qole03charf4" path="res://icon.svg" id="2_gcwsc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w35wc"]

@@ -5,9 +5,9 @@ extends Control
 @export var ScoreLabel : Label
 @export var TimeLabel : Label
 func _physics_process(delta: float) -> void:
-	update_health()
+	
 	update_score()
-	time()
+	
 
 func update_health():
 	healthLabel.text= ": " + str(Global.player_health)

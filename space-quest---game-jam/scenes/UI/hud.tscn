@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bglnq7s01qsrc" path="res://assets/SBGJ_Assets/health icon.png" id="1_w63w1"]
 [ext_resource type="LabelSettings" uid="uid://dw0jnl6rmwn86" path="res://assets/UI/new_label_settings.tres" id="2_0dug8"]
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("healthLabel", "ScoreLabel") groups=["hud"]]
+[node name="HUD" type="Control" node_paths=PackedStringArray("healthLabel", "ScoreLabel", "TimeLabel") groups=["hud"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_f335f")
 healthLabel = NodePath("Health_texture/health_label")
 ScoreLabel = NodePath("Score_Label")
+TimeLabel = NodePath("Label")
 
 [node name="Health_texture" type="TextureRect" parent="."]
 layout_mode = 1
@@ -48,3 +49,16 @@ grow_horizontal = 2
 text = "test"
 label_settings = ExtResource("2_0dug8")
 horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_top = 16.0
+offset_right = -7.0
+offset_bottom = 61.0
+grow_horizontal = 0
+text = "Test"
+label_settings = ExtResource("2_0dug8")

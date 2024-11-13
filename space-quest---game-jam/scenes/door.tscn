@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cuccy8ntoal8o"]
 
-[ext_resource type="Script" path="res://Node2D.gd" id="1_luw7b"]
+[ext_resource type="Script" path="res://stuff not in the game but I am too scared to delete/Node2D.gd" id="1_luw7b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qv0gt"]
 size = Vector2(34, 20)

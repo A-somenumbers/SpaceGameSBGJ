@@ -17,10 +17,9 @@ var player_alive = true
 var attackIp = false
 func _physics_process(delta):
 	playerMovementandInput()
-	Global.player_health = health
-	if health <= 0:
+	if Global.player_health <= 0:
 		player_alive = false
-		health = 0;
+		Global.player_health = 0;
 		self.queue_free()
 	enemy_attack()
 	attack()
@@ -37,7 +36,7 @@ func _on_player_hbox_body_entered(body: Node2D) -> void:
 		enemy_attackRange = true
 		dmgGiven = 20
 	if body.has_method("hp"):
-		health += 20
+		Global.player_health += 20
 	if body.has_method("doubleDmg"):
 		Global.damage = Global.damage*2
 
@@ -49,7 +48,7 @@ func _on_player_hbox_body_exited(body: Node2D) -> void:
 		enemy_attackRange = false	
 func enemy_attack():
 	if enemy_attackRange and attack_cooldown:
-		health = health - dmgGiven
+		Global.player_health = Global.player_health - dmgGiven
 		attack_cooldown = false
 		$attack_cooldown.start()
 	
