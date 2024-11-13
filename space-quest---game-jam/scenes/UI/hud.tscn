@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://di4hdfe80ent6"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_f335f"]
+[ext_resource type="Texture2D" uid="uid://bglnq7s01qsrc" path="res://assets/SBGJ_Assets/health icon.png" id="1_w63w1"]
+[ext_resource type="LabelSettings" uid="uid://dw0jnl6rmwn86" path="res://assets/UI/new_label_settings.tres" id="2_0dug8"]
+
+[node name="HUD" type="Control" node_paths=PackedStringArray("healthLabel", "ScoreLabel") groups=["hud"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f335f")
+healthLabel = NodePath("Health_texture/health_label")
+ScoreLabel = NodePath("Score_Label")
+
+[node name="Health_texture" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 56.0
+offset_bottom = 56.0
+texture = ExtResource("1_w63w1")
+stretch_mode = 4
+
+[node name="health_label" type="Label" parent="Health_texture"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = -4.0
+offset_right = 104.0
+offset_bottom = 19.0
+grow_vertical = 2
+text = "test"
+label_settings = ExtResource("2_0dug8")
+
+[node name="Score_Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -104.0
+offset_top = 16.0
+offset_right = 104.0
+offset_bottom = 61.0
+grow_horizontal = 2
+text = "test"
+label_settings = ExtResource("2_0dug8")
+horizontal_alignment = 1

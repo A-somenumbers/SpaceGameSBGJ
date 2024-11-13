@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-@export var movement_speed : float = 500
+@export var movement_speed : float = 200
+var dash_speed : float = 600
+var can_dash = true
 
 @onready var projectileO = preload("res://scenes/projectiles/projectile_1.tscn")
 @onready var projectile1 = preload("res://scenes/projectiles/projectile_2.tscn")
@@ -15,12 +17,14 @@ var player_alive = true
 var attackIp = false
 func _physics_process(delta):
 	playerMovementandInput()
+	Global.player_health = health
 	if health <= 0:
 		player_alive = false
 		health = 0;
 		self.queue_free()
 	enemy_attack()
 	attack()
+	
 	
 	
 
@@ -59,7 +63,9 @@ func playerMovementandInput():
 	move_and_slide()
 	
 	if character_direction: 
-		velocity = character_direction * movement_speed
+		velocity = character_direction.normalized() * movement_speed
+		if Input.is_action_pressed("dash") and can_dash:
+			dash()
 		if Global.player_current_attack == false:
 			if $flip/sprite.animation != "walking": $flip/sprite.animation = "walking"
 	
@@ -76,6 +82,7 @@ func attack():
 		$"deal attack timer".start()
 		
 		if(Global.mode == 1):
+			
 			var p1 = projectileO.instantiate()
 			p1.global_position = $flip/shotPos.global_position
 			p1.vel = $flip.scale.x
@@ -104,5 +111,19 @@ func _on_deal_attack_timer_timeout() -> void:
 	$"deal attack timer".stop()
 	Global.player_current_attack = false
 
-
+#evan's dash code
+func dash():
+	velocity = character_direction.normalized() * dash_speed
+	if $DashAlarm.is_stopped():
+		$DashAlarm.start()
 	
+
+
+func _on_dash_alarm_timeout() -> void:
+	can_dash = false
+	movement_speed = 200
+	$DashCool.start()
+
+
+func _on_dash_cool_timeout() -> void:
+	can_dash = true
