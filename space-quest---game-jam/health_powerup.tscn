@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkx4bxe70tl01"]
+
+[ext_resource type="Script" path="res://health_powerup.gd" id="1_dofxy"]
+[ext_resource type="Texture2D" uid="uid://qole03charf4" path="res://icon.svg" id="2_gcwsc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w35wc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gcwsc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lcidu"]
+size = Vector2(128, 128)
+
+[node name="health_object" type="Area2D"]
+script = ExtResource("1_dofxy")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w35wc")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lcidu")
+debug_color = Color(0.768627, 0.443137, 0.168627, 0.584314)

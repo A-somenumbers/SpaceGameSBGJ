@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuccy8ntoal8o"]
+
+[ext_resource type="Script" path="res://Node2D.gd" id="1_luw7b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qv0gt"]
+size = Vector2(34, 20)
+
+[node name="door" type="Area2D"]
+script = ExtResource("1_luw7b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, 0)
+shape = SubResource("RectangleShape2D_qv0gt")
+debug_color = Color(0.227451, 0.619608, 0.427451, 0.419608)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
