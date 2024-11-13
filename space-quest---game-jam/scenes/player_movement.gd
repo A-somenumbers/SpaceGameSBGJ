@@ -31,8 +31,8 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	# Check if the player is colliding with a powerup.
-	for p in get_parent().get_node("powerups").get_children():
-		p.connect("player_collision", self.powerup_logic)
+	# for p in get_parent().get_node("powerups").get_children():
+	#	p.connect("player_collision", self.powerup_logic)
 
 # Set can dash to false and start dashing timer.
 func dash():
@@ -58,3 +58,13 @@ func powerup_logic(powerup_type):
 			if health < max_health:
 				health += 1
 			print(health)
+
+# Taking damage from an enemy logic.
+func enemy_logic(enemy_type):
+	match enemy_type:
+		0:
+			health -= 1
+		1:
+			health -=1
+		2:
+			health -=1

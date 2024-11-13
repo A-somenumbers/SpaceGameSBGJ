@@ -12,8 +12,8 @@ enum {HEALING}
 func _ready():
 	match powerup_type:
 		HEALING:
-			$sprite.texture = load("res://assets/sprites/coin.png")
-
+			pass
+			# $sprite.texture = load("res://assets/sprites/coin.png")
 
 # Delete the powerup once player touches it.
 func _on_powerup_body_entered(body):
