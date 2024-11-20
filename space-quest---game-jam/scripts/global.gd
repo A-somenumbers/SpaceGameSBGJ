@@ -8,7 +8,7 @@ var damage = 20
 var mode = 0
 var cooldown = 4.0
 var dmg = false
-var time = 10.0
+var time = 60.0
 
 func _physics_process(delta: float) -> void:
 	time -= delta

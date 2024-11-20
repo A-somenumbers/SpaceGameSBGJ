@@ -115,18 +115,23 @@ script = ExtResource("1_8v6q3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cy4bb")
 animation = &"attack"
+frame_progress = 0.350803
 
 [node name="basic_collision" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_qay4l")
 
 [node name="detection area" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection area"]
+visible = false
 shape = SubResource("CircleShape2D_wli5u")
 
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
 shape = SubResource("CircleShape2D_d87qw")
 
 [connection signal="body_entered" from="detection area" to="." method="_on_detection_area_body_entered"]

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://di4hdfe80ent6" path="res://scenes/UI/hud.tscn" id="1_gr6vq"]
 [ext_resource type="Texture2D" uid="uid://mhy6nocl4pm6" path="res://assets/SBGJ_Assets/AGJ_TileMap-Sheet.png" id="3_srt0e"]
 [ext_resource type="PackedScene" uid="uid://cuccy8ntoal8o" path="res://scenes/door.tscn" id="4_u7eno"]
-[ext_resource type="PackedScene" uid="uid://cwuwdhuq7v0dt" path="res://scenes/player.tscn" id="5_fst53"]
+[ext_resource type="PackedScene" uid="uid://cwuwdhuq7v0dt" path="res://stuff not in the game but I am too scared to delete/player.tscn" id="5_fst53"]
 [ext_resource type="PackedScene" uid="uid://t0i6il5kikp5" path="res://scenes/Enemies/alien_g.tscn" id="6_ay1c4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_csf4u"]
